@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Design-System-Challenge" transform="translate(-738.000000, -276.000000)">
+            <g id="light-mode" transform="translate(702.000000, 208.000000)">
+                <g id="select-menu" transform="translate(24.000000, 60.000000)">
+                    <g id="icon:-check,-small,-bold" transform="translate(0.000000, 4.000000)" filter="url(#filter-1)">
+                        <g transform="translate(12.000000, 4.000000)">
+                            <rect id="bounding-box" x="0" y="0" width="16" height="16"></rect>
+                            <polyline id="path" stroke="#6E7492" stroke-width="2" points="12.5 4.5 7 11 3.5 7.5"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
