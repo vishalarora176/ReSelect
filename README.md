@@ -3,6 +3,10 @@
 This application is to demonstrate a reusable, configurable Select component
 made from the scratch. The component is located at 'src/ui-components/select'.
 
+![image](https://user-images.githubusercontent.com/18328084/116821768-d01ef300-ab98-11eb-92e8-0ec0b770b003.png) ![image](https://user-images.githubusercontent.com/18328084/116821905-9ac6d500-ab99-11eb-949d-cf45fecf7702.png)
+
+
+
 
 ## Usage
 
