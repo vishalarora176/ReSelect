@@ -1,34 +1,40 @@
-# Design System challenge
+# Re-Select Component
 
-Welcome to our exercise. During this test, you will be given the challenge to create a Select Menu component from scratch using React.
+This application is to demonstrate a reusable, configurable Select component
+made from the scratch. The component is located at 'src/ui-components/select'.
 
-If you have any questions, please contact us for clarification, we're happy to help!
 
-![Select Menu](select-menu.jpg)
+##Usage
 
-## Instructions
+The component can be rendered using the below code
 
-1. **Clone** this repo to a location of your choosing.
-2. Write your solution to the exercise, making sure you followed the specs carefully.
-3. Push your solution to a **private repo** in your **personal Github account**.
-4. When you are ready for us to take a look, add the user `adjust-frontend` as a collaborator to your repo.
+<Select 
+  data={dropdownData} 
+  extended={true} // optional
+  theme='dark' // optional
+  title='<Title here>' // optional
+  onChange={handleSelectionChange}
+/>
 
-## Exercise
+##Props 
+1. "data" -> The data needs to be an array of objects. Each object should be of below structure
+  {
+    value: '<Value>',
+    label: '<label>',
+    description: '<Description>',
+    group: '<Group>' // optional
+  }
+2. "extended" -> this needs to be a boolean and the UI will be rendered based on this property. 
+    The component will be rendered in normal mode if the value is 'false' or the property is missing.
+3. "theme" -> the theme can be 'dark' or 'light'. The component will be rendered in Dark mode if the prop and value are provided. 
+    It will have the light theme in other cases.
+4. "title" -> this is the title for the select component
+5. "onChange" -> function that needs to be called when an item is selected from the dropdown
 
-Using the provided [specs](specs.pdf), create a reusable `Select Menu` component.
 
-- Your component should be written in React.
-- You can choose between Javascript or Typescript.
-- You can choose how to style your component.
+##Instructions
 
-### Bonus
-
-- You can choose how to test your component.
-
-## Expected result
-
-We expect you to create a **reusable** component that can be easily integrated into any project.
-
-Don't forget to add a documentation page with examples of the different use cases of your component, including instructions on how to use it and how to run your project locally.
-
-Good luck!
+1. Clone the application to your location and open terminal in the application folder
+2. Run 'npm install'
+3. Start the application -> Run 'npm start'. The application will start running on "http://localhost:3000/"
+4. Test the application -> Run "npm run test"

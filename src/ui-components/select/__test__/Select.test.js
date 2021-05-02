@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow, mount, render } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Select from '../Select';
 
@@ -25,23 +25,23 @@ const dropdownData = [
 
 describe('Select component', () => {
   it('renders correctly', () => {
-    shallow(<Select data={dropdownData} selected={{}} onChange={function() {}}/>);
+    shallow(<Select data={dropdownData} onChange={function() {}}/>);
   })
 
   it('Renders select title component without text', () => {
-    const wrapper = shallow(<Select data={dropdownData} selected={{}} onChange={function() {}}/>);
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
     const title = wrapper.find('.dropdown-title-box').find('span').html();
     expect(title).toContain('')
   });
 
   it('Renders select title component with provided title', () => {
-    const wrapper = shallow(<Select data={dropdownData} title='cars' selected={{}} onChange={function() {}}/>);
+    const wrapper = shallow(<Select data={dropdownData} title='cars' onChange={function() {}}/>);
     const title = wrapper.find('.dropdown-title-box').find('span').html();
     expect(title).toContain('cars')
   });
 
   it('Renders all the menu items when the title box is clicked', () => {
-    const wrapper = shallow(<Select data={dropdownData} selected={{}} onChange={function() {}}/>);
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
     wrapper.find('.dropdown-title-box').simulate('click');
     expect(wrapper.find("li").length).toEqual(3);
   });
