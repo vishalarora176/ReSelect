@@ -4,14 +4,14 @@ This application is to demonstrate a reusable, configurable Select component
 made from the scratch. The component is located at 'src/ui-components/select'.
 
 
-##Usage
+## Usage
 
 The component can be rendered using the below code
 
 ![image](https://user-images.githubusercontent.com/18328084/116821497-b4671d00-ab97-11eb-8f16-f7f7cc871ff1.png)
 
 
-##Props 
+## Props 
 1. "data" -> The data needs to be an array of objects. Each object should be of below structure
   {
     value: '<Value>',
@@ -27,7 +27,7 @@ The component can be rendered using the below code
 5. "onChange" -> function that needs to be called when an item is selected from the dropdown
 
 
-##Instructions
+## Instructions
 
 1. Clone the application to your location and open terminal in the application folder
 2. Run 'npm install'
