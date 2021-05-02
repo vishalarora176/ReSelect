@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Select from '../Select';
 
@@ -28,21 +28,16 @@ describe('Select component', () => {
     shallow(<Select data={dropdownData} selected={{}} onChange={function() {}}/>);
   })
 
-  it('Renders select title component with default text', () => {
+  it('Renders select title component without text', () => {
     const wrapper = shallow(<Select data={dropdownData} selected={{}} onChange={function() {}}/>);
     const title = wrapper.find('.dropdown-title-box').find('span').html();
-    expect(title).toContain('Please select a value')
+    expect(title).toContain('')
   });
 
-  it('Renders select title component with selected text', () => {
-    const selectedValue = {
-      value: '2',
-      label: 'Two',
-      description: 'Second Description'
-    };
-    const wrapper = shallow(<Select data={dropdownData} selected={selectedValue} onChange={function() {}}/>);
+  it('Renders select title component with provided title', () => {
+    const wrapper = shallow(<Select data={dropdownData} title='cars' selected={{}} onChange={function() {}}/>);
     const title = wrapper.find('.dropdown-title-box').find('span').html();
-    expect(title).toContain('Two')
+    expect(title).toContain('cars')
   });
 
   it('Renders all the menu items when the title box is clicked', () => {
@@ -51,67 +46,58 @@ describe('Select component', () => {
     expect(wrapper.find("li").length).toEqual(3);
   });
 
-  it('Renders the selection icon only once when a selected item is passed', () => {
-    const selectedValue = {
-      value: '2',
-      label: 'Two',
-      description: 'Second Description'
-    };
-    const wrapper = shallow(<Select data={dropdownData} selected={selectedValue} onChange={function() {}}/>);
-    wrapper.setState({open: true})
-    const selectedIconsLength = wrapper.find('.selected-icon').length;
-    expect(selectedIconsLength).toBe(1);
-  });
-
-  it('onChange function is called when a list item is clicked', async () => {
-    const selectedValue = {
-      value: '2',
-      label: 'Two',
-      description: 'Second Description'
-    };
-    const onChangeFunction = jest.fn();
-    const wrapper = shallow(<Select data={dropdownData} selected={selectedValue} onChange={onChangeFunction}/>);
-    wrapper.setState({open: true})
-
-    const firstMenuItem = wrapper.find('.dropdown-menu-item').first();
-    firstMenuItem.simulate('click');
-    expect(onChangeFunction).toHaveBeenCalled();
-  });
-
-  it('closes the menu when a list item is clicked', async () => {
-    const selectedValue = {
-      value: '2',
-      label: 'Two',
-      description: 'Second Description'
-    };
-    const onChangeFunction = jest.fn();
-    const wrapper = shallow(<Select data={dropdownData} selected={selectedValue} onChange={onChangeFunction}/>);
-    wrapper.setState({open: true})
-
+  it('Closes the menu when an item is clicked', () => {
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
+    wrapper.find('.dropdown-title-box').simulate('click');
     const firstMenuItem = wrapper.find('.dropdown-menu-item').first();
     firstMenuItem.simulate('click');
     const menu = wrapper.find('.dropdown-menu');
     expect(menu.exists()).toBeFalsy();
   });
-  
-  it('shows description with extended version', async () => {
+
+  it('Selects the value when item is clicked', () => {
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
+    wrapper.find('.dropdown-title-box').simulate('click');
+    const menuItem = wrapper.find('.dropdown-menu').childAt(1);
+    menuItem.simulate('click');
+    const title = wrapper.find('.dropdown-title-box').find('span').html();
+    expect(title).toContain('Two')
+  });
+
+  it('Renders the selection icon only once when an item is selected', () => {
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
+    wrapper.find('.dropdown-title-box').simulate('click');
+    const firstMenuItem = wrapper.find('.dropdown-menu-item').first();
+    firstMenuItem.simulate('click');
+    wrapper.find('.dropdown-title-box').simulate('click');
+    const selectedIconsLength = wrapper.find('.selected-icon').length;
+    expect(selectedIconsLength).toBe(1);
+  });
+
+  it('onChange function is called when a list item is clicked', async () => {
     const onChangeFunction = jest.fn();
-    const wrapper = shallow(<Select data={dropdownData} extended={true} selected={{}} onChange={onChangeFunction}/>);
-    wrapper.setState({open: true})
+    const wrapper = shallow(<Select data={dropdownData} onChange={onChangeFunction}/>);
+    wrapper.find('.dropdown-title-box').simulate('click');
+    const firstMenuItem = wrapper.find('.dropdown-menu-item').first();
+    firstMenuItem.simulate('click');
+    expect(onChangeFunction).toHaveBeenCalled();
+  });
+
+  it('shows description with extended version', async () => {
+    const wrapper = shallow(<Select data={dropdownData} extended={true} onChange={function() {}}/>);
+    wrapper.find('.dropdown-title-box').simulate('click');
     const descriptionsLength = wrapper.find('.menuItem-description').length;
     expect(descriptionsLength).toBe(3)
   });
 
   it('does not render dark mode when theme is not passed', async () => {
-    const onChangeFunction = jest.fn();
-    const wrapper = shallow(<Select data={dropdownData} selected={{}} onChange={onChangeFunction}/>);
+    const wrapper = shallow(<Select data={dropdownData} onChange={function() {}}/>);
     const component = wrapper.find('.dropdown-dark');
     expect(component.exists()).toBeFalsy()
   });
 
   it('renders in dark mode when dark theme is not passed', async () => {
-    const onChangeFunction = jest.fn();
-    const wrapper = shallow(<Select data={dropdownData} theme='dark' selected={{}} onChange={onChangeFunction}/>);
+    const wrapper = shallow(<Select data={dropdownData} theme='dark' onChange={function() {}}/>);
     const component = wrapper.find('.dropdown-dark');
     expect(component.exists()).toBeTruthy()
   });
