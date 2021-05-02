@@ -8,13 +8,8 @@ made from the scratch. The component is located at 'src/ui-components/select'.
 
 The component can be rendered using the below code
 
-<Select 
-  data={dropdownData} 
-  extended={true} // optional
-  theme='dark' // optional
-  title='<Title here>' // optional
-  onChange={handleSelectionChange}
-/>
+![image](https://user-images.githubusercontent.com/18328084/116821497-b4671d00-ab97-11eb-8f16-f7f7cc871ff1.png)
+
 
 ##Props 
 1. "data" -> The data needs to be an array of objects. Each object should be of below structure
