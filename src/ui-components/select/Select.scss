@@ -1,0 +1,107 @@
+.dropdown {
+  margin: 10px;
+  width: 400px;
+  user-select: none;
+  cursor: pointer;
+  z-index: 1;
+  &-title-box {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid #CDD0E0;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 12px;  
+      transition: transform 0.1s linear;
+    }
+    img.open{
+      transform: rotate(180deg);
+      transition: transform 0.1s linear;
+    }
+  }
+  &-menu {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-top: 3px;
+    border: 1px solid #CDD0E0;
+    padding: 0;
+    border-radius: 5px;
+    max-height: 70vh;
+    overflow: auto;
+    position: absolute;
+    width: inherit;
+    background: white;
+    &-item {
+      list-style: none;
+      padding: 10px;
+      cursor: pointer;
+      margin: 3px 0;
+      display: flex;
+      align-items: flex-start;
+      &:hover {
+        background: #ECEEF4;
+      }
+      .selected-icon-container {
+        flex: 0 0 25px;
+
+      }
+      &--selected {
+        background: #00A3BE;
+        color: white;
+        &:hover {
+          background: #00A3BE;
+          color: white;
+        }
+        .menuItem-text-container {
+          .menuItem-description {
+            color: white;
+          }
+        }
+      }
+      &--last {
+        border-bottom: 2px solid #CDD0E0;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .menuItem-label-text {
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  
+  .menuItem-description {
+    color: gray;
+    font-size: 0.9rem;
+  }
+}
+
+
+.dropdown-dark {
+  color: #F9FAFC;
+  .dropdown {
+    &-title-box {
+      background: #21253A;
+      border: 1px solid #ECEEF4;
+    }
+    &-menu {
+      box-shadow: 2px 3px 26px 8px rgba(0,0,0,0.75);
+      background: #21253A;
+      &-item {
+        &:hover {
+          background: #343A51;
+        }
+        &--selected {
+          &:hover {
+            background: #00A3BD;
+          }
+        }
+      }
+    }
+  }
+  .menuItem-description {
+    color: white;
+  }
+}
